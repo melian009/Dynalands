@@ -1,0 +1,539 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{amsmath,amssymb}
+%\usepackage{cite}
+\usepackage{nameref,hyperref}
+\usepackage{lineno}
+\usepackage{natbib}
+\usepackage{graphicx}
+\linenumbers
+\linespread{2.0}%double spacing lines
+\usepackage{subcaption}
+\captionsetup[subtable]{position=top}
+\bibliographystyle{mee}
+
+% Remove brackets from numbering in List of References
+%\makeatletter
+%\renewcommand{\@biblabel}[1]{\quad#1.}
+%\makeatother
+
+
+% Leave date blank
+\date{}
+
+\begin{document}
+
+\begin{flushleft}
+{\Large
+\textbf{Metacommunities in dynamic landscapes}}
+%% Insert Author names, affiliations and corresponding author email.
+\\
+\vspace{0.5cm} Charles Novaes de Santana\textsuperscript{1,2,4 *}, Jan
+Klecka\textsuperscript{1,3 *}, Gian M. Palamara\textsuperscript{4}, Carlos J. Meli\'an\textsuperscript{1}
+\\
+\bigskip
+
+\textbf{1} Center for Ecology, Evolution and Biogeochemistry, EAWAG,
+Swiss Federal Institute of Aquatic Science and Technology, Kastanienbaum, Switzerland
+\\
+\textbf{2} Programa de P\'{o}s-Graduaç\~{a}o em Ci\^{e}ncias da Terra e do Ambiente,
+Universidade Estadual de Feira de Santana, Bahia, Brasil
+\\
+\textbf{3} Department of Ecology and Conservation Biology, Institute of Entomology,
+Biology Centre of the Czech Academy of Sciences, \v{C}esk\'{e}
+Bud\v{e}jovice, Czech Republic\\
+\textbf{4} Institute of Evolutionary Biology and Environmental Studies, University of Zurich, Switzerland\\
+\bigskip
+
+* These authors contributed equally to this work.\\
+% Current address notes
+\textbf{Corresponding author}: Charles Novaes de Santana. University of Zurich, Institute of Evolutionary Biology and Environmental Sciences, Building Y27-J-54, Winterthurerstrasse 190, CH-8057 Zürich, Switzerland. e-mail: charles.desantana@ieu.uzh.ch; phone: +41 44 634 6143\\
+\bigskip
+
+  \textbf{Running title}: Metacommunities in dynamic landscapes\\
+
+  \textbf{Keywords}: patch dynamics, connectivity dynamics, seasonality, population dynamics, \\ individual based model, random geometric networks,\\
+  regional species richness, static landscapes, dynamic landscapes, fast-changing landscapes\\
+
+  \textbf{Author contributions}: CNdS and CJM designed the study and drafted the initial model. CNdS and JK implemented the model. All authors analyzed the data and contributed substantially to initial draft and revisions of the manuscript.  
+  \\
+  \textbf{Type of Article}: Standard Article\\
+
+  \textbf{Counts}: Abstract: 148; Main text; 4565; No. References: 47; No Figures: 4 in color; Number of tables: 2\\
+\end{flushleft}
+
+
+\begin{comment}
+Discussion JUNE 26 2017
+Things to explore:
+
+Static landscapes fully exploring the range of connectivity in RGG. Do they match neutral predictions in isolated landscapes? Under which parameter combinations do we recover the analytical expectations?
+\end{comment}
+
+
+
+\newpage
+% Please keep the abstract between 100 and 150 words
+\section*{Summary}
+%146
+Predictions from theory, field data, and experiments have shown that high landscape connectivity promotes higher species richness than low connectivity. However, examples demonstrating high diversity in low connected landscapes are also known. Here we describe the many factors that drive landscape connectivity at different spatiotemporal scales by varying the amplitude and frequency of changes in the dispersal radius of spatial networks. We found that the fluctuations of landscape connectivity support metacommunities with higher species richness than static landscapes. Our results also show a dispersal radius threshold below which species richness drops dramatically in static landscapes. Such a threshold is not observed in dynamic landscapes for a broad range of amplitude and frequency values determining landscape connectivity. We conclude that extending metacommunity theory by merging amplitude and frequency as drivers of landscape connectivity together with patch dynamics can provide new testable predictions about species diversity in rapidly changing landscapes.    
+\newpage
+\section*{Introduction}
+    
+Metacommunity theory provides a number of insights into the role of dispersal for species coexistence in landscapes composed of units of suitable and unsuitable habitats \citep{Holyoaketal2005}. Empirical studies have largely focused on dispersal rates with only recent emphasis on patterns of landscape connectivity \citep{kneitel2004, cadotte2006}. Most studies have shown that increasing connectivity tends to increase persistence and richness \citep{ellneretal2001, foxetal2011}, but examples of decreasing richness with increasing connectivity are also known \citep{daviesetal2009, altermattetal2011}. Theoretical models predict that habitat loss and fragmentation may reach a threshold beyond which a rapid avalanche of species extinctions occurs \citep{fahrig2002, ovaskainenhanski2003, rybickihanski2013}. These predictions gained empirical support e.g. from studies of deforestation where a transition from a continuous forest to more isolated and smaller fragments of the original habitat occurs and is accompanied by significant species loss \citep{LauranceEtAl1997, MetzgerEtAl2009}. Fluctuations in landscape availability (random or seasonal) are also common in nature \citep{Sprugel1991, RuizEtAl2014} but the consequences of fluctuations in landscape connectivity for species richness received less attention, with the exception of disturbances \citep{Sousa1984, SuppErnest2014}. Whether landscape connectivity increases or decreases persistence and regional species richness, dispersal abilities of organisms, which are critical to understand habitat connectivity from the organism's point of view, are affected by the fluctuations in the environment and various habitat characteristics. Many of these factors fluctuate with different frequencies, with some showing high intraday variation while others fluctuate daily, seasonally or at larger time scales \citep{StensethEtAl2002}.
+
+Landscape dynamics encompasses two major processes: patch dynamics and variation in landscape connectivity. Patch dynamics is defined as changes of the number and position of patches, changes of patch habitat characteristics, size and suitability. Fluctuations in landscape connectivity arise from changes of the matrix organisms have to cross to disperse from one patch or habitat to another (figure \ref{fig:Figure1} and table \ref{table1} for a glossary of the main concepts). In some cases, temporal and spatial dynamics are correlated. Examples include fire size distributions with highly frequent small-scale fires and rare large-scale ones \citep{GEB:GEB12246}. At large temporal scales, transitions between habitat types at the continental scale occur during glacial-interglacial cycles \citep{WerneckEtAl2011}. There are also examples of large-scale landscape dynamics over short time scales, such as daily tides and seasonal changes of sea ice extent (see animations \nameref{S1_Video} and \nameref{S2_Video}). Correlated and uncorrelated temporal and spatial scales driving landscape dynamics may have implications for metacommunity dynamics. For example, landscape dynamics in combination to climate change velocity may impact threatened populations \citep{loarieetal2009}, affect population divergence and speciation \citep{aguileetal2011}, shape phylogenetic trees \citep{Gascueletal2015}, and drive changes of the latitudinal biodiversity gradient over time \citep{mannionetal2014}.
+
+Patch dynamics has been addressed by numerous theoretical studies of metapopulations \citep{Hanski1999, Cornell&Ovaskainen2008, DrechslerJohst2010}. Hanski et al (1999) derived formulas for predicting patch occupancy of a single population in landscapes characterized by temporal patch dynamics. The mean species lifetime in a network of dynamical patches can also be estimated \citep{DrechslerJohst2010}. Recent studies have shown that the rate of patch turnover is critical for metapopulation persistence. For example, Reigada et al (2015)\citep{reigadaetal2015} showed that increasing the rate of patch dynamics decreases metapopulation persitence when dispersal is continuous, while persistence is facilitated by pulsed dispersal. The links connecting different patches can also vary in time. For example, the connectivity of habitat patches in the polar regions fluctuates seasonally according to sea ice extent (see animations \nameref{S1_Video} and \nameref{S2_Video}). Connectivity dynamics can therefore be critical in determining landscape structure. However, connectivity dynamics has received less attention in metacommunity and metapopulation ecology \citep{Holyoaketal2005,JohstEtAl2011,Yannicetal2014}. The concept of connectivity dynamics has been more commonly used in disease ecology \citep{Dushoffetal2004, Keeling&Eames2005, Ross2010}. For example, sinusoidal forcing of the transmission rate can accurately describe fluctuations of incidence in the host observed in the dynamics of the host–influenza system \citep{Dushoffetal2004}.
+
+Despite the scarcity of theoretical predictions, there is empirical evidence that connectivity dynamics may play an important role for dynamics of metapopulations in heterogeneous landscapes. Most of the empirical evidence comes from studies which focused on single-species metapopulation persistence where habitat connectivity is driven by the characteristics of the landscape matrix separating habitat patches as perceived by the organisms \citep{EycottEtAl2012}. For example, dispersal of amphibians between ponds is strongly affected by the terrestrial habitat separating the ponds \citep{VanBuskirk2012, ClineHunter2014} and by weather (e.g., moisture) \citep{RittenhouseEtAl2009}. Similarly, dispersal of butterflies also depends on the landscape matrix \citep{KueflerEtAl2010} and dispersal kernels fluctuate in time \citep{SchtickzelleEtAl2012}. In fish, interconnections between rivers forming during periods of heavy rain can connect otherwise disconnected habitats and allow for dispersal and gene flow \citep{BoizardEtAl2009}. Here we connect temporal and spatial changes of landscape connectivity to metacommunity dynamics and species richness. We use amplitude and frequency as a proxy to describe both spatial and temporal fluctuations in the landscape, varying periodically the dispersal radius of the organisms (i.e., any two patches are connected if their distance is lower or equal than the dispersal radius, figure \ref{fig:Figure2} and table \ref{table2} for the parameters used). We then compare landscapes with no connectivity change (i.e., static landscapes) with landscapes whose dispersal radius fluctuates with a given amplitude and frequency (figure \ref{fig:Figure2}). 
+
+Our results show that the number of species coexisting in fragmented landscapes differs between static and dynamic landscapes. 
+
+\begin{comment}
+We show that regional species richness (i.e., $\gamma-$species richness) decays as the landscape becomes more fragmented, both in static and dynamic landscapes, but the rate of this decay depends on the amplitude and frequency of the fluctuations of landscape connectivity (figure \ref{fig:Figure4_5}). Our results also show that for low frequency of change in landscape connectivity, the variance of regional species richness peaks with an intermediate number of isolated components in the landscape. This result suggests that high or low $\gamma-$species richness can occur in dynamic landscapes with a large number of components for a broad range of values of amplitude and frequency determining landscape connectivity. When varying the dispersal radius value in static landscapes, we observe a fragmentation threshold below which species richness drops dramatically (figures \ref{fig:Figure4_5} and 4). The fragmentation threshold does not occur in dynamic landscapes for a broad range of amplitude and frequency values determining landscape connectivity (figure \ref{fig:Figure6}). In summary, our approach connects a mechanistic description of fluctuations of dispersal radius to landscape connectivity to explore the consequences of landscape dynamics for regional species richness.
+\end{comment}
+
+    
+\section*{Methods}
+
+In this section, we describe the computational model and the mathematical equations of the model. The mathematical definitions are provided in table \ref{table2}.
+
+\subsection*{Static and dynamic landscapes}
+
+We use a spatially explicit individual-based model in patchy and dynamic landscapes. We run our simulations in landscapes consisting of randomly located sites with range values between [0,1] representing landscapes of any possible scale. Each patch $i$ has a spatial location given by the coordinates $(x_{i}, y_{i})$. Two patches $i$ and $j$ are connected by individuals dispersing if their geographic distance, $\mathfrak{d_{ij}}$, is equal or smaller than a threshold distance (i.e., dispersal radius), $\mathfrak{d_{c}}$. This dispersal radius is fixed in static landscapes and follows a sinusoidal signal in dynamic ones. Dispersal radius to connect patches $i$ and $j$ follows:
+
+\begin{equation}
+\mathfrak{d_{c}} = \frac{\mathcal{A}}{2} (1 + sin(\pi \mathfrak{f} t))
+\label{eq:ratioAf}
+\end{equation}
+
+
+WE HAVE TO GO THROUGHOUT ALL EQS AGAIN FROM HERE    
+
+
+
+where $t$ is time and $\mathfrak{d_{0}}$, $\mathcal{A}$, $\mathfrak{f}$ are the mean dispersal radius, the amplitude and the frequency of the landscape respectively. In figure \ref{fig:Figure2} we show a graphical representation to visualize the effect of amplitude and frequency on the dispersal radius and landscape connectivity (i.e., the number of connections of each patch $i$ with other sites in the network changes with time, see figure \ref{fig:Figure2} \nameref{S3_Video} and \nameref{S4_Video}). 
+
+The amplitude, $\mathcal{A}$, is responsible for \emph{turning on and off} the dynamic landscape. For $\mathcal{A} = 0$ we have the static landscape scenario (in which the critical dispersal radius, $\mathfrak{d_{c}}$, does not change in time). For $\mathcal{A} \neq 0$ we have the dynamic landscape scenario. 
+
+In the dynamic landscape scenario the dispersal radius, $\mathfrak{d_{c}}$, changes in time proportionally to the mean dispersal radius, $\mathfrak{d_{0}}$, and at a periodicity defined by the sinusoidal function $sin(\pi  \mathfrak{f} t)$. The frequency, $\mathfrak{f}$, is the variable used to define the periodicity of change in the critical radius, and $t$ is the time (in \emph{generations}). 
+
+For static landscapes, as $\mathcal{A} = 0$, the connectivity of the landscape is only a function of the mean dispersal radius, $\mathfrak{d_{0}}$. There is no variance related to this mean dispersal radius value, and thus there is a fixed dispersal radius given by $\mathfrak{d_{c}} = \mathfrak{d_{0}}$. 
+
+In the present work, we are exploring only the dynamic landscape scenario in which the amplitude is maximum ($\mathcal{A} = 1$). The range of values for the critical dispersal radius is defined by the range of values of the sinusoidal function. For the minimum value of the sinusoidal function, $-1$, the critical radius is equal to 0, as follows:\\
+
+\begin{equation*}
+\mathfrak{d_{c}} = \mathfrak{d_{0}} + \mathfrak{d_{0}} \times 1 \times (-1),
+\end{equation*}
+
+that gives 
+\begin{equation*}
+\mathfrak{d_{c}} = 0.
+\end{equation*}
+
+For the maximum value of the sinusoidal function, $+1$, the critical radius is $2\mathfrak{d_{0}}$ following\\
+\begin{equation*}
+\mathfrak{d_{c}} = \mathfrak{d_{0}} + \mathfrak{d_{0}} \times 1 \times 1,
+\end{equation*}
+
+that gives 
+\begin{equation*}
+\mathfrak{d_{c}} = 2\mathfrak{d_{0}}.
+\end{equation*}
+
+This means that the the critical dispersal radius, $\mathfrak{d_{c}}$, fluctuates around the mean dispersal radius, $\mathfrak{d_{c}}$, with minimum and maximum values 0 and $2\mathfrak{d_{0}}$, respectively.\\
+
+\subsection*{Population dynamics and dispersal in dynamic landscapes}
+
+In our approach there can be several species in each patch and the state of each patch is described by a vector of species abundances. To model spatio-temporal changes in the species abundances of these patches, we need to define dispersal rules together with population dynamics. We assume that all patches are of the same size and habitat type; we do not associate a priori a value for each patch which determines the habitat type as, for example, \citep{rybickihanski2013} do. Instead, we allow individuals to disperse between any two patches only as a function of species abundance of the leaving patch. In this scenario individuals only can move between connected $i$ and $j$ patches (i.e., those patches satisfying the condition $\mathfrak{d_{ij}}$ $\leq$ $\mathfrak{d_{c}}$). At the beginning of the simulations we have an initial population that spreads instantaneously across the whole landscape. We assume that all patches are fully occupied and have the same carrying capacity, i.e., population size at a given patch $i$, $J_{x_i,y_i}$, is equal to the patch environmental carrying capacity. The total number of individuals in the landscape is $J$ = $J_{x_1,y_1}$ + $J_{x_2,y_2}$ + $J_{x_3,y_3}$ + $J_{x_4,y_4}$,..., + $J_{x_\mathcal{P},y_\mathcal{P}}$, with $\mathcal{P}$ the total number of patches.
+
+Population dynamics on the spatial network occur under a zero-sum birth and death process in overlapping generations. This means that at each time step an individual dies from a randomly chosen patch {\em i}. This individual is replaced with an individual coming from another patch (i.e., migrant), individuals coming from the same patch than the death individual, or coming from the regional species pool. Parents are chosen with probability $m$ from outside patch {\em i} within the network, with probability $\nu$ from the regional species pool, or with probability $\lambda$ (i.e. local birth rate), defined as $\lambda$ = $1 - m - \nu$, from the patch {\em i}. We consider an extremely diverse regional species pool containing an infinite number of species. Because of the infinite number of species in the regional pool, we assume that every immigration event introduces a new species. Immigration of a new species corresponds to speciation in the context of metacommunity models \citep{Vanpeteghem_Haegeman_2010}. Dispersal from patch $j$ to patch $i$ is a function of patch $i$ connectivity in. The probability to migrate from $j$ to $i$, $m_{ij}$, is defined as:
+    
+\begin{equation}
+m_{ij} = m \frac{\mathfrak{d_{ij}}}{\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i,\\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}} \mathfrak{d_{ij}} \Theta (\mathfrak{d_{ij}} - \mathfrak{d_{c}}) \ \forall i,
+\end{equation}\\
+
+with\\
+\begin{equation*}
+\Theta (x)= 
+\begin{cases}
+    0 & \text{if } x > 0\\
+    1 & \text{if } x \le 0,\\
+\end{cases}
+\end{equation*}
+\\
+
+with $\mathfrak{d_{ij}}$ the geographical distance between patch $i$ and $j$ satisfying $\mathfrak{d_{ij}}$ $\leq$ $\mathfrak{d_{c}}$ and $m$ is the intensity of emigration rate. Because dispersal from patch $i$ to patch $j$ is the same as in the opposite direction ($m_{ji} = m_{ij}$), this represents symmetric, patch- and density-independent dispersal where dispersal to connected and less distant patches is more likely than dispersal to more distant patches. 
+
+For landscapes in which all the patches are isolated, $\Theta (\mathfrak{d_{ij}} - \mathfrak{d_{c}}) = 0, \ \forall i$ and the migration rate from $j$ to $i$, $m_{ij} = 0, \ \forall i$. For landscapes in which at least one pair of patches is connected by an edge, the following relationship is valid:\\
+
+\begin{equation*}
+\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i,\\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}{\frac{\mathfrak{d_{ij}}}{\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i,\\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}\mathfrak{d_{ij}}}} = 1,
+\end{equation*}
+\\
+
+So we guarantee that the sum of the migration rates from patch $j$ to $i$ equals the migration probability $m$
+\begin{equation*}
+\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i,\\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}{m_{ij}} = m.
+\end{equation*}
+\\
+
+As a consequence we assure that the transition probabilities we are using are normalized to one\\
+\begin{equation*}
+\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i,\\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}{m_{ij}} + \lambda + \nu = m + \lambda + \nu = 1
+\end{equation*}
+\\
+
+\subsection*{Analytical solution} 
+\label{text:analytical}
+Here, we explain in detail how we combine dispersal with local
+population dynamics. The following equations conceptualize
+metacommunity dynamics. The first (second) equation gives the
+transition probability that the $k^{th}$ species of
+metacommunity declines (increases) in abundance by one individual in
+patch $i$
+
+\begin{equation}
+\begin{array}{lcr}
+\hspace{-0.25 in}P \left(N_{i}^{k} - 1 | N_{i}^{k} \right) = M^{k}_{i} \left[\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i \\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}
+ \sum\limits_{k'=1,k'\ne k}^{S_{j}} m_{ij}^{k'} \left(\frac{N_{j}^{k'}}{J_{j}}\right) + \lambda \left(\frac{J_{i} - N_{i}^{k}}{J_{i} - 1}\right) + \nu \right]\\[0.5cm]
+%\label{master1}
+\\
+\hspace{-0.25 in}P \left(N_{i}^{k} + 1 | N_{i}^{k}\right) = (1 - M^{k}_{i}) \left[
+\sum\limits^{\mathcal{P}}_{\substack{j = 1,j \ne i \\ \mathfrak{d_{ij}} \leq \mathfrak{d_{c}}}}
+%\sum\limits_{j=1,j\ne i}^{\mathcal{P}}
+ m_{ij}^{k} \left(\frac{N_{j}^{k}}{J_{j}}\right) + \lambda \left(\frac{N_{i}^{k}}{J_{i} - 1}\right) + \nu \right].
+\end{array}
+\label{master}
+\end{equation}
+
+Here $M^{k}_{i}$ describes density-dependent mortality rate of species
+$k$ in patch $i$. This mortality is the natural per capita mortality
+rate described in this article by $\mu
+\frac{N_{i}^{k}}{J_{i}}$. $N_{i}^{k}$ and $J_{i}$ are the total number of
+individuals of species $k$ in patch $i$ and the total number of individuals
+in patch $i$, respectively. $\mathcal{S}_{j}$ and $\mathcal{P}$ are
+the total number of species in patch $j$ and the total number of
+patches, respectively. In addition to the mortality rate parameters,
+there are three more metacommunity specific parameters: $\lambda$, the
+local birth rate, $m$, the intensity of emigration rate, and $\nu$,
+the immigration rate from the regional species pool.
+
+The first equation in (\ref{master}) gives the transition probability
+for the $k^{th}$ species to decline in abundance by one individual in
+patch $i$. For this to happen, an individual must die in the $k^{th}$
+species, which occurs at a rate given by $M^{k}_{i}$. The first
+probability inside the brackets is that of an immigration event of
+some species other than $k$ from a patch different to $i$ (see
+equation 2 in the main text with $\mathfrak{d_{ij}}$ the geographical
+distance between patch $i$ and $j$ satisfying $\mathfrak{d_{ij}}$
+$\leq$ $\mathfrak{d_{c}}$). The second term represents the probability
+of having a local birth in a species other than $k$ with the -1
+subtracted in the denominator after the death in the previous step of
+one individual in this patch. The third term describes the probability
+of an immigration event from the regional species pool. The second
+equation in (\ref{master}) describes the transition probability for
+the $k^{th}$ species to increase by one individual. For this to
+happen, there must be no local death in species $k$ which is given by
+$1 - M^{k}_{i}$. The other terms in brackets stand for dispersal (the
+first term), local birth of an individual of species $k$ (second
+term), and immigration of a new species $k$ from the regional species
+pool. This last event can occur only when there was no such species,
+i.e., when $N_{i}^{k}$ $=$ 0 at time $t - 1$.  
+
+   
+\subsection*{Implementation and simulations}
+
+Prior to the simulations, one needs to specify the parameters for generating the landscape and the regional pool of species. The landscape is generated following a 2D-random geometric network as described in the section "Static and dynamic landscapes". Simulations were carried out with an initial population at each patch $i$, $J_{x_i,y_i}$, of 100 individuals for a total of 100 patches. The population size and the number of patches remained constant throughout the simulations. Results for figures \ref{fig:Figure4_5}-\ref{fig:Figure6}, \nameref{S1_Fig}, \nameref{S2_Fig}, and \nameref{S3_Fig} were obtained after 100 replicates with 1000 generations each, where a generation, $\mathcal{G}$, is an update of the total number of individuals, $J$, in the landscape. Values plotted represent the mean and the variance across the last 500 generations per replicate. We explored a broad range of parameter values from a uniform distribution with values $\mathcal{U}[0.001,1]$ for the mean dispersal radius, $\mathfrak{d_{0}}$, the amplitude, $\mathcal{A}$, and the frequency, $\mathfrak{f}$. We set mortality rates equal to 1 (i.e., the natural mortality rate, $\mu$). Rates of immigration from the regional species pool, $\nu$, and the intensity of emigration rate, $m$, were set to 0.003, and 0.1, respectively. Local birth rates for each metacommunity, $\lambda = 1 - \nu - m$, so that a new individual replacing the dead individual appears with certainty.
+    
+\subsection*{Landscape connectivity and $\gamma-$species richness}
+
+We calculated the mean number of components per replicate as a proxy of landscape connectivity and availability together with the mean and variance regional species richness (i.e., $\gamma-$species richness) for the simulations with static and dynamic landscapes (figure \ref{fig:Figure4_5} and \nameref{S1_Fig}). We remark that a component can be formed by one or several isolated patches (table \ref{table1}). We also calculated mean and variance of the $\gamma-$species richness as a function of the dispersal radius, $\mathfrak{d_{c}}$ (figure \ref{fig:Figure4_5} and \nameref{S2_Fig}). We also performed spectral analysis on the time series of $\gamma-$species richness, in order to detect possible resonance between fluctuation of the landscape and species richness. We plotted the mean and variance $\gamma-$species richness and also the mean number of components vs. all amplitudes, $\mathcal{A}$, frequencies, $\mathfrak{f}$, and mean dispersal radius, $\mathfrak{d_{0}}$, explored (figure \ref{fig:Figure6} and \nameref{S1_Fig}). 
+    
+\section*{Results}
+
+We found that migration, and the frequency and amplitude of the dispersal radius play a key role in predicting regional species richness. For medium to high migration rates, $m$ = 0.3, the mean regional species richness decayed with the increasing mean number of isolated components in static landscapes (figure \ref{fig:Figure4_5} top left, black circles). The overall trend for the mean regional species richness for dynamic landscapes was qualitatively similar to static landscapes with the mean regional species richness decaying with an increasing number of isolated components in the landscape for all values of frequency (figure \ref{fig:Figure4_5} top left, Spearman-$\rho$ $>$ 0.37, All p $<$ 0.05). However, mean regional species richness values differed between high and low frequency (compare high frequency in red, orange and yellow, $\mathfrak{f}$ $>$ 0.1, with low frequency, $\mathfrak{f}$ = [0.001,0.1], light blue and dark blue in figure \ref{fig:Figure4_5}). For example, static and dynamic landscapes with high values of frequency (frequencies in red, orange and yellow, $\mathfrak{f}$ $>$ 0.1) predicted less than 70 species in a highly fragmented landscape containing 60 components. Predictions of the mean regional species richness for dynamic landscapes with low frequency values, $\mathfrak{f}$ = [0.001,0.1] reached values above 80 species (light and dark blue in figure \ref{fig:Figure4_5} top left). Landscapes with frequency values equal to 0 recover a static landscape (equation 1) and the dispersal radius, $\mathfrak{d_{c}}$, is equal to the mean dispersal radius, $\mathfrak{d_{0}}$, as for static landscapes. The trend of decreasing regional species richness with the number of components in the landscape observed for high migration rate was less strong with low and very low migration rate values ($m$ = 0.1 and $m$ = 0.01, respectively, figure \nameref{S1_Fig} top and bottom left). 
+
+The variance for static landscapes followed the same pattern as the mean regional species richness with the number of components for high migration rates and high values of frequency ($m$ = 0.3, figure \ref{fig:Figure4_5} top right, black circles and red, orange and yellow circles, $\mathfrak{f}$ $>$ 0.1, Spearman-$\rho$ $>$ 0.31, All p $<$ 0.05). However, the variance for dynamic landscapes peaked and showed no correlation approximately at an intermediate number of isolated components in the landscape for medium and low frequency values of change in landscape connectivity (figure \ref{fig:Figure4_5} top right, $\mathfrak{f}$ = [0.001,0.1], represented as light green, light blue and dark blue, Spearman-$\rho$ $<$ 0.18, p $>$ 0.1). This result suggests that high or low $\gamma-$species richness occurred in dynamic landscapes with a large number of components and for a broad range of values of amplitude and frequency determining landscape connectivity. The decay of the variance of regional species richness with the number of components in the landscape for low migration dynamics reproduced the pattern observed for the mean species richness for static landscapes (figure \nameref{S3_Fig} top and bottom right). Our results showed that an increasing number of fragments in the landscape predicted less regional species richness. However, we show also that the decay in the mean and variance of regional species richness is affected by both differences in migration rates and by differences in the frequency of change of the dispersal radius. Thus, migration and connectivity dynamics played a key role to predict the regional species richness in dynamic landscapes with fluctuations in landscape connectivity supporting metacommunities with higher mean and variance in species richness than the observed richness in static landscapes. 
+
+Our analysis of the relationship between dispersal radius and $\gamma-$species richness showed a fast decay in species richness for high migration rates in static landscapes (figure \ref{fig:Figure4_5} bottom left, black circles). The threshold observed in static landscapes decayed less strongly in dynamic landscapes for low frequency and low migration rate values (figures \ref{fig:Figure4_5} bottom left, frequency values, $\mathfrak{f}$ = [0.001,0.1], represented as light green, light blue and dark blue and figure \nameref{S2_Fig} top left for migration rate, $m$ = 0.1). The threshold in species richness was not observed for very low migration rates (figure \nameref{S2_Fig} bottom left for migration rate, $m$ = 0.01). For low migration rate values, both static and dynamic landscapes show the same uncorrelated pattern with the mean and variance regional species richness varying greatly for the range of dispersal values explored (Spearman-$\rho$ $<$ 0.15, p $>$ 0.1). High variance in regional species richness was observed in dynamic landscapes with low values of frequency, $\mathfrak{f}$ = [0.001, 0.1], for large mean dispersal values (figure \ref{fig:Figure4_5} bottom right, light green, light blue and dark blue). Moreover, performing spectral analysis on the time series of $\gamma-$species richness, we found no particular correlation between the frequency of the landscape and the characteristic frequencies of species richness. Our results showed that medium to high migration rates predicted stronger deviations from static landscapes and faster decay of species richness and overall a lower species richness when decreasing the dispersal radius than low or very low migration dynamics (compare figure \ref{fig:Figure4_5} with \nameref{S1_Fig} and \nameref{S2_Fig}).  
+
+To explore the robustness of the decay of regional species richness with the number of components in the landscape in static and dynamic landscapes we simulated a broad range of amplitude, $\mathcal{A}$, frequency, $\mathfrak{f}$, and mean dispersal radius values, $\mathfrak{d_{0}}$ (figure \ref{fig:Figure6} and \nameref{S3_Fig}). The rapid decay of landscape connectivity with decreasing dispersal radius followed from the predicted analytical percolation threshold in random geometric graphs. The critical threshold in our landscape is given by $D_c$ = $L$ $\times$ sqrt(4.52/(4 $\times$$\pi$ $\times$$\mathcal{P}$)) = 0.06 (figure \ref{fig:Figure6}, vertical dotted line, log10(0.06) = -1.22), where $L$ is 1, and $\mathcal{P}$ the number of patches, 100. Below this critical threshold, the landscape was fragmented into a large number of disconnected components and $\gamma-$species richness was more strongly reduced in static and dynamic landscapes for a broad range of frequency values (figure \ref{fig:Figure6} and \nameref{S3_Fig} top compare static landscapes, black line, with dynamic landscapes, red lines; blue line shows dynamic landscapes with $\mathcal{A}$ = $\mathfrak{d_{0}}$). These results were robust to changes in the frequency determining the dispersal radius (figure \nameref{S3_Fig} for frequency, $\mathfrak{f}$ = 0.001 (a), 0.01 (b), 0.1 (c) and 1 (d)). The threshold decreasing $\gamma-$species richness in static landscapes did not occur in dynamic landscapes. This result remained qualitatively similar for two orders of magnitude of frequency values (figure \nameref{S3_Fig} for frequency, $\mathfrak{f}$ = 0.001 (a), 0.01 (b), 0.1 (c)). In summary, the fast decay in species richness as the landscape becomes fragmented in static landscapes did not occur in dynamic landscapes for a broad range of amplitudes, $\mathcal{A}$, frequencies, $\mathfrak{f}$, and mean dispersal radius values, $\mathfrak{d_{0}}$. This suggests that dynamic landscapes may support metacommunities with higher species richness than static landscapes in fragmented landscapes.
+    
+\section*{Discussion}
+
+Our study adds to previous attempts to connect species persistence to dynamic landscapes \citep{Hanski1999, keymeretal2000}. Among the many factors driving landscape connectivity we focus on the periodic ones. Different periodicity can be described by varying the amplitude and the frequency of the change in landscape connectivity. Here we described how the amplitude and the frequency of landscape connectivity drive coexistence in multispecies communities. Our results show that the fluctuations of landscape connectivity support metacommunities with higher species richness than static landscapes (figures \ref{fig:Figure4_5}-\ref{fig:Figure6}). We show the decay in the mean and the variance of regional species richness, caused by increasing number of fragments, strongly differed between low, medium and high migration rates and between different values of the frequency values driving landscape connectivity (figure \ref{fig:Figure4_5}). This means that highly fragmented landscapes can support a species rich metacommunity if the landscape becomes periodically connected. The positive effect of these periods of high landscape connectivity which allows dispersal and range expansions on $\gamma-$species richness thus offsets the negative effects of periods of low connectivity. Our results also suggest that landscapes characterized by fast changes of connectivity relative to the generation time of organisms predict qualitatively the same outcomes as static landscapes (i.e., landscape with high frequency, figure \ref{fig:Figure4_5}). This result implies that analytical predictions obtained from the classical metacommunity theory in static landscapes may be valid for rapidly changing dynamic landscapes with high frequencies determining dispersal dynamics of populations (figures \ref{fig:Figure4_5} and \ref{fig:Figure6}). However, we have also shown that there is a broad range of frequency and amplitude values which provide predictions that strongly differ from static landscapes.
+
+Contrary to our metacommunity model, classical studies of predator-prey and competitive interactions reported that higher landscape connectivity and migration rates tend to homogenize metacommunities and decrease species richness \citep{ellneretal2001, foxetal2011}. High landscape connectivity in predator-prey systems tends to destabilize prey populations, which leads to extinctions and thus decreases species richness \citep{ellneretal2001, foxetal2011}. Similarly, competitive communities with highly connected landscapes tend to have only a few dominant species \citep{Holyoaketal2005}. These results follow from interaction asymmetries, which are not included in our models. Instead, the models we have explored here emphasize random and limited dispersal and demographic stochasticity, as the main drivers of metacommunities in dynamic landscapes. Our approach did not explicitly test for directionality of migration or selection and we assumed equal growth rates across the landscape, nor did we assume any asymmetry in competition or trophic interactions as possible mechanisms for structuring diversity in our static and dynamic landscapes, hence a neutral theory of biodiversity in dynamic landscapes was applied. While our model assumes neutral dynamics and random geometric graphs for population and migration dynamics, in a more realistic scenario we expect more differences between static and dynamic landscapes. For example, in our model all the individuals and species use the available connections between patches equally, but niche differences within and between species, different habitat preferences or landscape heterogeneity may provide a more strict threshold for the decay of $\gamma-$species richness. Our prediction of high regional species richness in landscapes with patches alternately isolated and then highly connected for periods of time is tentatively supported by studies of river systems which show that even brief periods of increased connectivity may lead to gene flow with significant effects on genotypic diversity of populations over the landscape \citep{BoizardEtAl2009}. In the metacommunity context, brief periods of high landscape connectivity may allow local species to spread rapidly to a number of new sites providing opportunities for population growth and rescue from extinction by demographic and environmental stochasticity in small local populations.
+
+Extinction thresholds form one of the core predictions from metapopulation and metacommunity theory \citep{tilmanetal1994, bascompte&sole1996, keymeretal2000, fahrig2002, ovaskainenhanski2003, rybickihanski2013}. Several models and field data have shown single and multiple species extinction thresholds with increasing habitat loss in random and nonrandom habitat destruction scenarios \citep{fortuna&bascompte2006}. While most of the studies dealing with habitat destruction change the total amount of available habitat, the extinction threshold obtained in our approach is produced in landscapes with constant total amount of available landscape. Despite this difference in the approach used to understand regional species richness with increasing landscape fragmentation, our result show that the classical percolation threshold found in random geometric landscapes predicts a multiple species extinction threshold in static landscapes. However, this percolation threshold does not predict a multiple species extinction threshold in dynamic landscapes (figure \ref{fig:Figure6}). This means dynamic landscapes allows for dispersal periods that compensate for local extinctions during periods of low connectivity. 
+
+Microcosm or mesocosms experiments with contrasting regimes of amplitude and frequency determining connectivity fluctuations could be used to test our predictions under laboratory conditions. Model systems like bacteria, protists \citep{Carrara2012dendritic, AltermattEtAl2015}, small invertebrates such as zooplankton \citep{Steiner2011seasonal_experiments} or insects \citep{GovindanSwihart2012} may provide a good level of control over the landscape-level parameters to test predictions from dynamic landscapes models. Long-term field data can also be used to explore landscape dynamics models incorporating more realistic climatic regimes or broader geographic regions in deep time to infer the amplitude and frequency (or additional parameters capturing fluctuations at different temporal scales) that best predict the spatio-temporal fluctuations in species diversity. For example, there is evidence of rapidly changing landscapes in the Arctic and Antarctic regions with the ice cover dynamics (animations \nameref{S1_Video} and \nameref{S2_Video}), but the amplitude and frequency required to predict such fluctuations and their impact on local and regional species richness are currently unknown. Landscape dynamics approximations can also help to discern how much complexity is required to make predictions that fit periods of peaks or flattened species richness gradients as observed in the fossil record for some periods of the latitudinal biodiversity gradient \citep{mannionetal2014}. In deep time, transitions between habitat types at the continental scale occurring during glacial-interglacial cycles over long temporal scales would require to include non-periodic landscape dynamics (i.e., plate tectonic or continental drift) \citep{WerneckEtAl2011} and here we provide a simple model that can be extended to include those more realistic scenarios.
+     
+\subsection*{Future perspectives}
+
+Given the rapid changes observed in natural and human-disturbed landscapes, there is a growing need to develop methods that more accurately describe the effects of dynamic landscapes in metacommunities. Here we have developed an individual-based metacommunity model to explore the effect of amplitude and frequency of fluctuations of organisms' dispersal radius on local and regional species richness. In addition to temporal fluctuations of dispersal radius (equation 1 and equations in \nameref{text:analytical}), we can simulate destruction of patches and creation of new patches at random (or seasonal) time points. Similarly, spatial heterogeneity or temporal fluctuations in the carrying capacity of individual patches could also be included. We can thus start to explore the interactive effects of patch and connectivity dynamics on local and regional species richness. In the absence of patch dynamics, our results show that the fluctuations of landscape connectivity support metacommunities with higher species richness than static landscapes in fragmented landscapes but the combined effect of patch and connectivity dynamics can change these predictions. Future research would need to combine patch and connectivity dynamics to further advance our understanding of short- and large-scale patterns of biodiversity changes in rapidly changing landscapes. 
+
+
+\section*{Acknowledgments}
+
+This study was supported by the Swiss National Science Foundation project 31003A-144162 (to CNdeS and CM), by the Sciex fellowship project 12.327 (to JK) and by the Swiss National Science Foundation International Short Visits project IZK0Z3\_158668 (to CM and JK). JK is also supported by the Czech Science Foundation (project GP14-10035P).
+
+\newpage
+
+\bibliography{references}
+\newpage
+
+\section*{Figures}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/landscapedynamics.eps}
+\caption{Two major processes of landscape dynamics: Patch dynamics represents changes in the number and position of patches, changes of patch habitat characteristics, size and suitability. Connectivity dynamics represents changes in the landscape matrix in future time points. Both dynamics, patch and connectivity dynamics, may happen at the same time.}
+\end{center}
+\label{fig:Figure1}
+\end{figure}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{./newfigures/criticalradius_definition.png}
+\caption{Dispersal radius ($\mathfrak{d_{c}}$) to determine whether two patches are connected, as a function of mean dispersal radius, $\mathfrak{d_{0}}$, amplitude, $\mathcal{A}$, and frequency, $\mathfrak{f}$. The value of $\mathfrak{d_{c}}$ fluctuates around $\mathfrak{d_{0}}$, with a period given by the inverse of the frequency, $\mathfrak{f}$. $\mathfrak{d_{c}}$ values range between 0 and 2$\mathcal{d_{0}}$.}
+\end{center}
+\label{fig:Figure2}
+\end{figure}
+
+
+%\begin{figure}[hb!]
+%\caption{Top) Dispersal radius ($\mathfrak{d_{c}}$) to determine whether two patches are connected, as a function of mean dispersal radius, $\mathfrak{d_{0}}$, amplitude, $\mathcal{A}$, and frequency, $\mathfrak{f}$. The value of $\mathfrak{d_{c}}$ fluctuates around $\mathfrak{d_{0}}$, with a period given by the inverse of the frequency, $\mathfrak{f}$. Maximum fluctuation is given by 2$\mathcal{d_{0}}$. (a), (b), and (c) represent low, medium, and high values of dispersal radius, respectively, and are related to the topology of the networks in the bottom figure. Bottom) Landscape connectivity in three scenarios of low dispersal radius and landscape connectivity, (a), medium dispersal radius and landscape connectivity, (b), and large dispersal radius and landscape connectivity, (c). Two patches $i$ and $j$ are connected if their geographical distance, $\mathfrak{d_{ij}}$, is lower or equal than the dispersal radius, $\mathfrak{d_{c}}$.}
+%\label{fig:Figure2}
+%\end{figure}
+
+%\begin{figure}[hb!]
+%\begin{center}
+%\caption{Mean (panels a and c) and variance (panels b and d) of regional species richness ($\gamma$-richness) as a function of the mean number of components in the landscape (panels a and b) and of the mean dispersal radius (panels c and d). The color scale represents different frequencies, $\mathfrak{f}$, i.e., different connectivity dynamics (see figure 2). The mean and the variance of gamma has been computed over the last 500 generations of each replicate. Simulations were done with a migration rate, $m$ = 0.3 and with an immigration rate from the species regional pool, $\mathrm{\nu}$ = 0.003. The total number of patches is $\mathcal{P}$ = 100, the patch size is given by $J_{x_i,y_i}$ = 100 individuals and the number of generations per replicate is $\mathcal{G}$ = 1000.}
+%\end{center}
+%\label{fig:Figure4_5}
+%\end{figure}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/steadystate_analyticalsolution_staticscenario.png}
+\label{fig:theoretical}
+\caption{Comparison between the static landscape scenario ($\mathcal{A}$ = 0 and $\mathfrak{f}$ = 0) when all sites are isolated ($\mathfrak{d_{ij}} ~ > ~ \mathfrak{d_{c}}$ for all $\mathfrak{d_{ij}}$) with the analytical solution described in \cite{vallade2003analytical}. Black circles represent the ''infinite island scenario'', when the critical dispersal radius to connect two patches is lower than the minimal distance between any two patches in the landscape resulting in all the patches isolated. The dashed horizontal line represents the expected richness for the same scenario following the analytical expression by \cite{vallade2003analytical}: $\langle$S$\rangle = \sum_{i=0}^{J -1} \frac{\theta}{(\theta+i)}$ with $\langle$S$\rangle$, $J$, $\theta$, and $i$ as the average number of species per patch, the total number of individuals in each patch, the biodiversity number (i.e., $\theta = \frac{(J-1)*\nu}{(1-\nu)}$, with $\nu$ defined as the speciation rate), and the number of species with abundance $i$, respectively. Both simulations were done for $\mathrm{m}$ = 0.3, $\mathrm{\nu}$ = 0.003, $\mathcal{P}$ = 100, $J_{x_i,y_i}$ = 100, $\mathcal{G}$ = 1000 (see table \ref{table2}).}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/steadyState_rich.png}
+\label{fig:Richness}
+\caption{Regional species richness ($\gamma$-richness) as a function of the mean dispersal radius, $\mathfrak{d_{0}}$, for static landscapes (black dots, $\mathcal{A}$ = 0), and dynamic landscapes with different frequencies of fluctuation, represented by different coloured dots: (red dots for $f = 0.101$; green dots for $f = 0.5$; blue dots for $f = 0.9$; and cyan dots for $f = 1$). Simulations were done for $\mathrm{m}$ = 0.3, $\mathrm{\nu}$ = 0.003, $\mathcal{P}$ = 100, $J_{x_i,y_i}$ = 100, $\mathcal{G}$ = 1000 (see table \ref{table2}).}
+\end{center}
+\end{figure}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/steadyState_extrate.png}
+\label{fig:ExtRate} 
+\caption{Regional extinction rate ($\mu$) as a function of the mean dispersal radius, $\mathfrak{d_{0}}$, for static landscapes (black dots, $\mathcal{A}$ = 0), and dynamic landscapes with different frequencies of fluctuation, represented by different coloured dots: (red dots for $f = 0.101$; green dots for $f = 0.5$; blue dots for $f = 0.9$; and cyan dots for $f = 1$). Simulations were done for $\mathrm{m}$ = 0.3, $\mathrm{\nu}$ = 0.003, $\mathcal{P}$ = 100, $J_{x_i,y_i}$ = 100, $\mathcal{G}$ = 1000 (see table \ref{table2}).}
+\end{center}
+\end{figure}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/relativelevelplot_rich.png}
+\label{fig:phasespace_rich}
+\caption{
+Relative changes in mean $\gamma-$species richness as a function of the mean dispersal radius and the frequency of landscape dynamics. In X-axis we represent different values of mean dispersal radius ($mathfrak{d_{0}}$), ranging from $10^-4$ to $10^0$. Y-axis shows different values of frequency of changes in the dispersal radiusk ($f$), ranging from $10^{-3}$ to $10^0$. The colors represent the relative change of mean $\gamma-$species richness of the dynamic landscape simulations compared with the $\gamma-$richness of static landscape simulations. Blue colors mean that the mean $\gamma-$species richness of the dynamic landscape simulation was lower than the one in the static simulation; and red colors mean that the $\gamma-$species richness of the dynamic landscape simulation was higher than the dynamic one. The contour lines represent the mean number of components. Simulations were done for $\mathrm{m}$ = 0.3, $\mathrm{\nu}$ = 0.003, $\mathcal{P}$ = 100, $J_{x_i,y_i}$ = 100, $\mathcal{G}$ = 1000 (see table \ref{table2}).
+}
+\end{center}
+\end{figure}
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[width=\textwidth]{newfigures/relativelevelplot_extrate.png}
+\label{fig:phasespace_ext}
+\caption{
+Relative changes in mean extinction rate ($\mu-$) as a function of the mean dispersal radius and the frequency of landscape dynamics. In X-axis we represent different values of mean dispersal radius ($mathfrak{d_{0}}$), ranging from $10^-4$ to $10^0$. Y-axis shows different values of frequency of changes in the dispersal radiusk ($f$), ranging from $10^{-3}$ to $10^0$. The colors represent the relative change of mean extinction rate ($\mu$) of the dynamic landscape simulations compared with the $\gamma-$richness of static landscape simulations. Blue colors mean that the extinction rate of the dynamic landscape simulation was lower than the one in the static simulation; and red colors mean that the extinction rate of the dynamic landscape simulation was higher than the dynamic one. The contour lines represent the mean number of components. Simulations were done for $\mathrm{m}$ = 0.3, $\mathrm{\nu}$ = 0.003, $\mathcal{P}$ = 100, $J_{x_i,y_i}$ = 100, $\mathcal{G}$ = 1000 (see table \ref{table2}).
+}
+\end{center}
+\end{figure}
+\clearpage
+\newpage
+
+\section*{Tables}
+
+\begin{table}[!ht]
+%\begin{adjustwidth}{-2.25in}{0in}
+\caption{Glossary of concepts}
+%\rowcolors{1}{white}{pink!20}
+\begin{tabular}{p{3cm}|p{12cm}}
+  \hline
+  \textbf{Concept} & \textbf{Explanation}\\  \hline
+  Metapopulation & A set of local populations connected by dispersal which occupy discrete patches of suitable habitat embedded in a matrix of unsuitable environment \\ \hline
+  Metacommunity &  An extension of the metapopulation concept to a multispecies setting; 
+  i.e. a set of local communities connected by dispersal \\ \hline  
+  Landscape dynamics & Changes in the number, position, and characteristics of habitat patches (patch dynamics) and connectivity fluctuations \\ \hline
+  Patch dynamics & Changes in the number and position of habitat patches (i.e., destruction and creation of patches) and changes of habitat 
+  characteristics of local patches (changes in vegetation type, abiotic conditions, etc) \\ \hline
+  Connectivity dynamics & Changes in properties of the matrix organisms have to cross 
+to disperse from one patch to another and changes in other external environmental conditions affecting dispersal \\ \hline
+  Random geometric network  & A spatial network of patches connected by links if they are located within a defined dispersal radius \\ \hline
+ Number of components & Number of isolated patches or group of patches in the landscape \\ \hline
+  Dispersal radius  & Maximum distance between a pair of patches which allows dispersal between the patches (i.e., patches with larger distance are not connected) \\ \hline
+\end{tabular}
+\label{table1}
+%\end{adjustwidth}
+\end{table}
+
+\newpage
+\begin{table}[!ht]
+%\begin{adjustwidth}{-2.25in}{0in}
+\caption{Symbols used and definitions}
+%\rowcolors{1}{white}{pink!20}
+\begin{tabular}{  p{5cm}  |  p{12cm} }
+ \hline
+  \textbf{Symbol} & \textbf{Concept}\\  \hline
+  $J_{x_i,y_i}$ & Community size of patch $i$ with coordinates $x_i$ and $y_i$ \\ \hline
+  $\mathcal{P}$ & Total number of patches \\ \hline
+  $\mathfrak{d_{c}}$ = $\mathfrak{d_{0}} + \mathcal{A} sin (\pi \mathfrak{f} t)$ & Dispersal radius to connect two patches \\ \hline
+  $\mathfrak{\hat{d}_{c}}$ & Mean dispersal radius to connect two patches \\ \hline
+  $\mathfrak{d_{0}}$ & Initial dispersal radius \\ \hline
+  $\mathcal{A}$ & Amplitude of change in the dispersal radius \\ \hline
+  $\mathfrak{f}$ & Frequency of change in the dispersal radius \\ \hline
+  $\mathcal{G}$ & Generation time or complete turnover in the landscape \\ \hline
+  $\mathfrak{d_{ij}}$ & Geographical distance between patch $i$ and $j$ \\ \hline
+  %$\mathfrak{d_{c_{min}}}$ & Minimum distance between any pair of patches \\ \hline
+  %$\mathfrak{d_{c_{max}}}$ & Maximum distance between any pair of patches \\ \hline
+  %$\sigma^{2}$[$\mathfrak{d_{c}}$] & Variance radius to connect two patches 23. STANDARIZE SYMBOLS IN FIGURES \\ \hline
+  $\Gamma_{i}$ = $\sum_{j \neq i} (\mathfrak{d_{ij}} < \mathfrak{d_{c}})$ & Connectivity patch $i$ \\ \hline
+  $\mathrm{m}$ & Emigration rate \\ \hline
+  $\mathrm{\nu}$ & Immigration rate from the regional species pool \\ \hline
+  $\lambda$ & Local birth rate \\ \hline  $\mu$ & Local natural mortality \\ \hline
+  $\mathrm{N^{k}_{i}}$ & Abundance of species $k$ in patch $i$ \\ \hline  
+  %$\alpha$-richness & Number of species in patch $i$ \\ \hline
+  $\gamma$-richness & Number of species in the landscape \\ \hline
+  $\hat{\gamma}$-richness & Mean number of species in the landscape \\ \hline
+  $\mathrm{m^{k}_{ij}}$ = ($\mathrm{m}$/$\mathfrak{d_{ij}}$)($\mathrm{N^{k}_{j}}$/$J_{x_j,y_j}$) & Dispersal from patch $j$ to $i$ for species $k$ with abundance $\mathrm{N^{k}_{j}}$ \\ \hline
+  $\mathcal{C}$ & Number of components in the landscape \\ \hline
+  $\hat{\mathcal{C}}$ & Mean number of components in the landscape  \\ \hline
+  %Symmetric \vspace{0.01 in} dispersal & Dispersal probability between two sites is the same in both directions. \\ \hline
+  %Density-independent \vspace{0.01 in} immigration (random) & Colonizing a site is not a function of the species density in the receiving site. \\ \hline
+  %Density-dependent mortality & Probability to die is a function of species abundance. \\ \hline        
+  %Density-dependent emigration & Probability to leave a site is a function of species abundance. \\ \hline
+%  \bottomrule
+\end{tabular}
+\label{table2}
+%\end{adjustwidth}
+\end{table}
+
+\newpage
+\clearpage
+\section*{Supporting Information}
+
+\subsection*{S1 Video}
+\label{S1_Video}
+{\textbf{Sea Arctic ice cover animation (S1\underline{\hspace{.1in}}Video.mp4)}}. This animation shows monthly Arctic sea ice cover for the period between October-1979 to September-2010, downloaded from \citep{cavalierietal1996}\\
+
+\subsection*{S2 Video}
+\label{S2_Video}
+\textbf{Sea Antarctic ice cover animation (S2\underline{\hspace{.1in}}Video.mp4)}. This animation shows monthly Antarctic sea ice cover for the period between October-1979 to September-2010, downloaded from \citep{cavalierietal1996}\\
+
+\subsection*{S3 Video}
+\label{S3_Video}
+\textbf{Dynamic landscape animation (S3\underline{\hspace{.1in}}Video.mp4)}. This animation shows fluctuations in landscape connectivity using amplitude, $\mathcal{A}$, frequency, $\mathfrak{f}$, and mean dispersal radius, $\mathfrak{d_{o}}$, of 0.15, 0.2 and 0.15, respectively (left, scenario 1 with $\mathcal{A}$ = $\mathfrak{d_{o}}$), and 0.3, 0.2, and 0.15, respectively (right, scenario 2 with $\mathcal{A}$ $\neq$ $\mathfrak{d_{o}}$).\\
+
+\subsection*{S4 Video}
+\label{S4_Video}
+\textbf{Dynamic landscape animation (S4\underline{\hspace{.1in}}Video.mp4)}. This animation shows fluctuations in landscape connectivity using amplitude, $\mathcal{A}$, frequency, $\mathfrak{f}$, and mean dispersal radius, $\mathfrak{d_{o}}$,  of 0.4, 0.05 and 0.4, respectively (left) and 0.4, 0.25, and 0.4 (right), respectively.\\
+
+%\subsection*{S1 Fig}
+%\begin{figure}[hb!]
+%\begin{adjustwidth}{-2.25in}{0in}
+%\includegraphics[width=6.5in]{./figures/fig501.eps}
+%\hspace{-2 in}\includegraphics[width=6.5in]{./figures/fig5001.eps}
+%\textbf{Mean and Variance of $\gamma-$species richness as a function of the mean number of components}. This figure shows the mean (left) and variance (right) $\gamma-$species richness as a function of the mean number of components for two migration rates, m = 0.1 (top) and m = 0.01 (bottom). Parameter values used are as in figure \ref{fig:Figure6} of the main ms.
+%\label{S1_Fig}
+%\end{adjustwidth}
+%\end{figure}
+
+%\clearpage
+%\subsection*{S2 Fig}
+%\begin{figure}[hb!]
+%\begin{adjustwidth}{-2.25in}{0in}
+%\includegraphics[width=7in]{./figures/fig601.eps}
+%\hspace{-2 in}\includegraphics[width=7in]{./figures/fig6001.eps}
+%\textbf{Mean and Variance of $\gamma-$species richness as a function of the dispersal radius}. This figure shows the mean (left) and variance (right) $\gamma-$species richness as a function of the dispersal radius, $\mathfrak{d_{c}}$, for two migration rates, m = 0.1 (top) and m = 0.01 (bottom). Parameter values used are as in figure 5 of the main ms.
+%\label{S2_Fig}
+%\end{adjustwidth}
+%\end{figure}
+
+%\clearpage
+%\subsection*{S3 Fig}
+%\begin{figure}[hb!]
+%\begin{adjustwidth}{-1.5in}{0in}
+%\begin{center}
+%\begin{tabular}{cc}
+%\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_0001.eps}\hspace{-0.025 in}
+%\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_00127.eps}\\
+%\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_0113.eps}\hspace{-0.025 in}
+%\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_1.eps}\\
+%\end{tabular}
+%\end{center}
+%\textbf{Mean $\gamma-$species richness as a function of the dispersal radius and amplitude}. This figure shows the mean $\gamma-$species richness as a function of the dispersal radius, $\mathfrak{d_{c}}$), and amplitude, $\mathcal{A}$, for static landscapes (black line, $\mathcal{A}$ = 0), dynamic landscapes with $\mathcal{A}$ = $\mathfrak{d_{0}}$ (blue line), and dynamic landscapes with $\mathcal{A}$ = 1 (red line) for four frequency, $\mathfrak{f}$, values: (a) $0.001$, (b) $0.01$, (c) $0.1$ , and (d) $1$. Vertical dotted line represents the critical threshold in static landscapes. Isoclines (dotted lines) represent the mean number of components, $\hat{\mathcal{C}}$, for each combination of dispersal radius, $\mathfrak{d_{c}}$, and amplitude $\mathcal{A}$. Simulations were done for emigration rate, $\mathrm{m}$ = 0.1, immigration rate from the species regional pool, $\mathrm{\nu}$ = 0.003, total number of patches, $\mathcal{P}$ = 100, patch size, $J_{x_i,y_i}$ = 100 individuals and number of generations per replicate, $\mathcal{G}$ = 1000. Values plotted represent the mean values over the last 500 generations in each replicate.
+%\label{S3_Fig}
+%\end{adjustwidth}
+%\end{figure}
+
+\begin{comment}
+%%%%%%%%%% THE FIGURES BELOW NEED TO BE REMOVED FROM THE TEX FILE BEFORE SUBMITTING TO PLOS COMP. BIOL. 
+
+\clearpage
+\newpage
+
+\begin{figure}[hb!]
+\begin{adjustwidth}{-2.25in}{0in}
+
+\caption{Two major processes of landscape dynamics: Patch dynamics represents changes in the number and position of patches, changes of patch habitat characteristics, size and suitability. Connectivity dynamics represents changes in the landscape matrix in future time points. Both dynamics, patch and connectivity dynamics, may happen at the same time.}
+\end{figure}
+
+
+\begin{figure}[hb!]
+\begin{adjustwidth}{-2.25in}{0in}
+\includegraphics[width=6.5in]{./figures/fig501.eps}
+\hspace{-2 in}\includegraphics[width=6.5in]{./figures/fig5001.eps}
+\caption{\textbf{S1 fig} - Mean and Variance of $\gamma-$species richness as a function of the mean number of components}. This figure shows the mean (left) and variance (right) $\gamma-$species richness as a function of the mean number of components for two migration rates, m = 0.1 (top) and m = 0.01 (bottom). Parameter values used are as in figure.
+\end{adjustwidth}
+\end{figure}
+
+
+\begin{figure}[hb!]
+\begin{adjustwidth}{-2.25in}{0in}
+\includegraphics[width=7in]{./figures/fig601.eps}
+\hspace{-2 in}\includegraphics[width=7in]{./figures/fig6001.eps}
+\caption{\textbf{S2 Fig - Mean and Variance of $\gamma-$species richness as a function of the dispersal radius.} This figure shows the mean (left) and variance (right) $\gamma-$species richness as a function of the dispersal radius, $\mathfrak{d_{c}}$, for two migration rates, m = 0.1 (top) and m = 0.01 (bottom). Parameter values used are as in figure 5 of the main ms}
+\end{adjustwidth}
+\end{figure}
+
+
+\begin{figure}[hb!]
+\begin{adjustwidth}{-1.5in}{0in}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_0001.eps}\hspace{-0.025 in}
+\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_00127.eps}\\
+\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_0113.eps}\hspace{-0.025 in}
+\includegraphics[width=2.2in,angle=-90]{./figures/Figure_7_1.eps}\\
+\end{tabular}
+\end{center}
+\caption{\textbf{S3 Fig - Mean $\gamma-$species richness as a function of the dispersal radius and amplitude}. This figure shows the mean $\gamma-$species richness as a function of the dispersal radius, $\mathfrak{d_{c}}$), and amplitude, $\mathcal{A}$, for static landscapes (black line, $\mathcal{A}$ = 0), dynamic landscapes with $\mathcal{A}$ = $\mathfrak{d_{0}}$ (blue line), and dynamic landscapes with $\mathcal{A}$ = 1 (red line) for four frequency, $\mathfrak{f}$, values: (a) $0.001$, (b) $0.01$, (c) $0.1$ , and (d) $1$. Vertical dotted line represents the critical threshold in static landscapes. Isoclines (dotted lines) represent the mean number of components, $\hat{\mathcal{C}}$, for each combination of dispersal radius, $\mathfrak{d_{c}}$, and amplitude $\mathcal{A}$. Simulations were done for emigration rate, $\mathrm{m}$ = 0.1, immigration rate from the species regional pool, $\mathrm{\nu}$ = 0.003, total number of patches, $\mathcal{P}$ = 100, patch size, $J_{x_i,y_i}$ = 100 individuals and number of generations per replicate, $\mathcal{G}$ = 1000. Values plotted represent the mean values over the last 500 generations in each replicate.}
+\end{adjustwidth}
+\end{figure}
+\end{comment}
+
+
+\end{document}

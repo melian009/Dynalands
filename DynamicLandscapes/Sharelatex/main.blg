@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: mee.bst
+Database file #1: references.bib
+Name 1 in "Ovaskainen, O., and Hanski, I." has a comma at the end for entry ovaskainenhanski2003
+while executing---line 1399 of file mee.bst
+Name 1 in "Ovaskainen, O., and Hanski, I." has a comma at the end for entry ovaskainenhanski2003
+while executing---line 1399 of file mee.bst
+Name 1 in "Rybicki, J., and Hanski, I." has a comma at the end for entry rybickihanski2013
+while executing---line 1399 of file mee.bst
+Name 1 in "Rybicki, J., and Hanski, I." has a comma at the end for entry rybickihanski2013
+while executing---line 1399 of file mee.bst
+Name 1 in "Ovaskainen, O., and Hanski, I." has a comma at the end for entry ovaskainenhanski2003
+while executing---line 1466 of file mee.bst
+Name 1 in "Ovaskainen, O., and Hanski, I." has a comma at the end for entry ovaskainenhanski2003
+while executing---line 1466 of file mee.bst
+Name 1 in "Rybicki, J., and Hanski, I." has a comma at the end for entry rybickihanski2013
+while executing---line 1466 of file mee.bst
+Name 1 in "Rybicki, J., and Hanski, I." has a comma at the end for entry rybickihanski2013
+while executing---line 1466 of file mee.bst
+You've used 50 entries,
+            2811 wiz_defined-function locations,
+            928 strings with 14917 characters,
+and the built_in function-call counts, 42203 in all, are:
+= -- 3686
+> -- 1596
+< -- 23
++ -- 622
+- -- 560
+* -- 3776
+:= -- 6273
+add.period$ -- 101
+call.type$ -- 50
+change.case$ -- 432
+chr.to.int$ -- 50
+cite$ -- 50
+duplicate$ -- 3250
+empty$ -- 3370
+format.name$ -- 723
+if$ -- 8402
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 486
+newline$ -- 204
+num.names$ -- 202
+pop$ -- 880
+preamble$ -- 1
+purify$ -- 384
+quote$ -- 0
+skip$ -- 652
+stack$ -- 0
+substring$ -- 3837
+swap$ -- 1252
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 444
+warning$ -- 0
+while$ -- 290
+width$ -- 0
+write$ -- 602
+(There were 8 error messages)
