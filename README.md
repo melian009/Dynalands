@@ -1,8 +1,11 @@
 # DynamicLandscapes
-This repository aims to explore the effects of patch and connectivity dynamics on species diversity. 
-The main goal is to strengthen existing metacommunity theory by extending it to dynamic landscapes. We are running a protocol combining simulations and analytical expectations to test the robustness of the assumptions and to compare the predictions using static and dynamic landscapes. The repository contains three folders. 
-DATA contains empirical data of landscape dynamics.
-CODES contain the algorithms to run the protocol organized in different folders and
-SHARELATEX contains the text and refs in .tex and .bib respectively. 
+This repository explores the role of patch and connectivity dynamics on species diversity. We aim to strengthen existing metacommunity theory by extending it to dynamic landscapes. The repository contains a protocol combining simulations and analytical expectations to compare the predictions between static and dynamic landscapes under a set of scenarios. The repository is based on the working paper uploaded to bioRxiv  https://www.biorxiv.org/content/early/2015/06/26/021220.short
 
-Codes, data and the docs associated to the working papers are all available. Please let us know if you find these docs useful for your research. 
+The repository contains 5 folders. 
+DATA contains empirical data of landscape dynamics
+PROTOCOL contains the steps to contrast predictions between static and dynamic landscapes
+CODES contain the algorithms to run the protocol 
+WORKINGPAPER contains the latex and .bib files of the original ms., and
+WORKSHOPS document useful information to build this repository
+
+Codes, data and the docs associated to the working paper are all available under the LICENSE.md file. Please let us know if you find these docs useful for your research. 
