@@ -3,10 +3,9 @@
 %Carlos Melian adapted to octave to run EULER server end DEC 2017@EAWAG
 %---------------------------------------------------------------------------
   %%% FIXED PARAMETERS do not touch them
-  MaxRep = 100;          %number of replicates
+  MaxRep = 10;          %number of replicates
   MaxGenerations = 500; %number of generations per replicates
-
-  rng(9);
+  
   
   m=0.1; %migration rate
   v=0.001;%speciation rate 
@@ -16,9 +15,10 @@
   L=1000; % size of the landscape
   
   %Amplitudes, AS and frequencies GPTS values
-  As = [0.8];%0.05 0.075 0.1 0.12 0.2 0.4 0.6 0.8 1];
-  GPTs = [1 5 10 50 100 500 1000 5000 10000 50000];
-  
+  As = [0.8];
+  GPTs = [5 10 50 100 500]; % GPT=1 is Static
+                            % GPT>MaxGenerations doesn't make sense...
+                            % correspond to 100, 50, 10, 5, 1 periods of r   
     for ii = 1:10; % i refersw to values of amplitude
      for jj = 1:10; % j refers to values of frequency
         
@@ -102,20 +102,15 @@
                 end
                 R(KillHab,KillInd) = R(KillHab,BirthLocalInd);
               end
-            %Species at each site:
+            end%k
             Sp_eachSt=arrayfun(@(ix) unique(R(ix,:)), [1:size(R,1)],'uniformoutput',false);
             %alpha(g)%Num of species at each site for present generation
             alpha = arrayfun(@(v) length(cell2mat(v)),Sp_eachSt);
             gamma(countgen) = numel(unique(R));
             alphaM(countgen) = mean(alpha);
             alphaSD(countgen) = std(alpha);
-      end%k   
-      %gamma
-      %alphaM
-      %alphaSD
-      %pause
-         end%loop of replicates
-          fnam = sprintf('Asymmetry%d %d.txt',As(1,ii),GPTs(1,jj));
+          end%loop generations  
+          fnam = sprintf('Asymmetry_A%d_GPT%d.txt',As(1,ii),GPTs(1,jj));
           fid = fopen(fnam,'a');
           %fprintf(fid,'%f %f %f %3f %3f\n',ri,countgen,gamma,alphaM,alphaSD);    
           %fnam1 = sprintf('gamma%d %d %d %d %d.txt',ri,As(1,ii),A,GPT,f);
