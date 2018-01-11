@@ -1,12 +1,11 @@
 %---------------------------------------------------------------------------
 %Alex Rozenfeld Dic 2017 - Salvador/Brazil adapted by GM and Carlos KB
 %Carlos Melian adapted to octave to run EULER server end DEC 2017@EAWAG
+%Alex Rozenfeld Jan 2018@EAWAG bugs fixed...
 %---------------------------------------------------------------------------
   %%% FIXED PARAMETERS do not touch them
-  MaxRep = 100;          %number of replicates
+  MaxRep = 10;          %number of replicates
   MaxGenerations = 500; %number of generations per replicates
-
- rng(4);
   
   m=0.1; %migration rate
   v=0.001;%speciation rate 
@@ -16,8 +15,10 @@
   L=1000; % size of the landscape
   
   %Amplitudes, AS and frequencies GPTS values
-  As = [0.1];%0.05 0.075 0.1 0.12 0.2 0.4 0.6 0.8 1];
-  GPTs = [1 5 10 50 100 500 1000 5000 10000 50000];
+  As = [0.1];
+  GPTs = [5 10 50 100 500]; % GPT=1 is Static
+                            % GPT>MaxGenerations doesn't make sense...
+                            % correspond to 100, 50, 10, 5, 1 periods of r 
   
     for ii = 1:10; % i refersw to values of amplitude
      for jj = 1:10; % j refers to values of frequency
@@ -32,7 +33,8 @@
         Gamma2Acum=zeros(1,MaxGenerations);
   
           %start loop of replicates
-          for ri = 1:MaxRep;       
+          for ri = 1:MaxRep; 
+            %tic;
             %Create the random geometric graph 
             n = unifrnd(0,L,S,2); %positions of sites
             
@@ -80,46 +82,51 @@
                 KillInd = unidrnd(J);
                 ep=unifrnd(0,1,1);  %event probability
                 if ep < m,  %Migration
-                % For Asymmetric migration (asymmetry comes from network topology)...
-                MigrantHabProb = unifrnd(0,max(Dc(KillHab,:)));
-                MigrantHab = find(Dc(KillHab,:) >= MigrantHabProb);
-                if D1(KillHab,MigrantHab) == 1; 
-               
-                %4. Implement local birth dynamics and speciation dynamics
-                MigrantInd = unidrnd(J);  
-                cevents = cevents + 1;
-                Pairs(cevents,1) = KillHab;
-                Pairs(cevents,2) = MigrantHab(1,1); 
-                R(KillHab,KillInd)=R(MigrantHab(1,1),MigrantInd);            
-                end
+                  % For Asymmetric migration (asymmetry comes from network topology)...
+                  MigrantHabProb = unifrnd(0,max(Dc(KillHab,:)));
+                  MigrantHab = find(Dc(KillHab,:) >= MigrantHabProb);
+                  if D1(KillHab,MigrantHab) == 1; 
+
+                    %4. Implement local birth dynamics and speciation dynamics
+                    MigrantInd = unidrnd(J);  
+                    cevents = cevents + 1;
+                    Pairs(cevents,1) = KillHab;
+                    Pairs(cevents,2) = MigrantHab(1,1); 
+                    R(KillHab,KillInd)=R(MigrantHab(1,1),MigrantInd);            
+                  end
                 elseif ep <= m+v,  %mutation
-                newSp = newSp +1;
-                R(KillHab,KillInd) = newSp;
+                  newSp = newSp +1;
+                  R(KillHab,KillInd) = newSp;
                 else               %birth
-                BirthLocalInd = unidrnd(J);
-                while BirthLocalInd == KillInd,
-                BirthLocalInd = unidrnd(J);
-                end
-                R(KillHab,KillInd) = R(KillHab,BirthLocalInd);
-              end
-            %Species at each site:
-            Sp_eachSt=arrayfun(@(ix) unique(R(ix,:)), [1:size(R,1)],'uniformoutput',false);
-            %alpha(g)%Num of species at each site for present generation
-            alpha = arrayfun(@(v) length(cell2mat(v)),Sp_eachSt);
-            gamma(countgen) = numel(unique(R));
-            alphaM(countgen) = mean(alpha);
-            alphaSD(countgen) = std(alpha);        
-      end%k   
-        end%loop of replicates
-         fnam = sprintf('Symmetry%d %d.txt',As(1,ii),GPTs(1,jj));
-          fid = fopen(fnam,'a');
-          %fprintf(fid,'%f %f %f %3f %3f\n',ri,countgen,gamma,alphaM,alphaSD);    
-          %fnam1 = sprintf('gamma%d %d %d %d %d.txt',ri,As(1,ii),A,GPT,f);
-          %fid = fopen(fnam1,'w');
-          fprintf(fid, [repmat('% 6f ',1,size(gamma,2)), '\n'],gamma);
-          fprintf(fid, [repmat('% 6f ',1,size(alphaM,2)), '\n'],alphaM);
-          fprintf(fid, [repmat('% 6f ',1,size(alphaSD,2)), '\n'],alphaSD);
-          fclose(fid);
-          end%ri
+                  BirthLocalInd = unidrnd(J);
+                  while BirthLocalInd == KillInd,
+                  BirthLocalInd = unidrnd(J);
+                  end
+                  R(KillHab,KillInd) = R(KillHab,BirthLocalInd);
+                end                                
+              end%k                <--- CARLOS: no es el fin k sino de j (MonteCarlo Time)                
+              %Species at each site:
+              Sp_eachSt=arrayfun(@(ix) unique(R(ix,:)), [1:size(R,1)],'uniformoutput',false);
+              %alpha(g)%Num of species at each site for present generation                
+              alpha = arrayfun(@(v) length(cell2mat(v)),Sp_eachSt);
+              gamma(countgen) = numel(unique(R));
+              alphaM(countgen) = mean(alpha);
+              alphaSD(countgen) = std(alpha); 
+%               if mod(k,20)==0 || k == 1,  
+%                 disp(['G: ' num2str(k) ' / ' num2str(MaxGenerations)]);
+%               end
+            end%loop of replicates <--- CARLOS: no replicates sino Generations!!!!
+            fnam = sprintf('Symmetry_A%d_GPT%d.txt',As(1,ii),GPTs(1,jj));
+            fid = fopen(fnam,'a');
+            %fprintf(fid,'%f %f %f %3f %3f\n',ri,countgen,gamma,alphaM,alphaSD);    
+            %fnam1 = sprintf('gamma%d %d %d %d %d.txt',ri,As(1,ii),A,GPT,f);
+            %fid = fopen(fnam1,'w');
+            fprintf(fid, [repmat('% 6f ',1,size(gamma,2)), '\n'],gamma);
+            fprintf(fid, [repmat('% 6f ',1,size(alphaM,2)), '\n'],alphaM);
+            fprintf(fid, [repmat('% 6f ',1,size(alphaSD,2)), '\n'],alphaSD);
+            fclose(fid); 
+            %disp('Time taken to calculate this rep')
+            %toc;            
+         end%ri   <---- Replicates         
        end%GPTs
      end%As
