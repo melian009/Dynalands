@@ -9,7 +9,7 @@
   m=0.1; %migration rate
   v=0.001;%speciation rate 
   l=1-(m+v);%birth rate
-  S = 30;%number of sites 
+  S = 10;%number of sites 
   J = 20;%individuals per site
   L=1000; % size of the landscape
   
