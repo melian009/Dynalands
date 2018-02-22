@@ -1,0 +1,6 @@
+{Operation terminated by user during unifrnd (line 37)
+
+
+In DynLSymmetry_09 (line 113)
+                ep=unifrnd(0,1,1);  %event probability
+} 

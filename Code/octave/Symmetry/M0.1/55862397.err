@@ -1,6 +1,0 @@
-{Operation terminated by user during unidrnd (line 20)
-
-
-In DynLSymmetry_08 (line 112)
-                KillInd = unidrnd(J);
-} 

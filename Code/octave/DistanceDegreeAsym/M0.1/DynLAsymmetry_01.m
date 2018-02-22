@@ -81,16 +81,17 @@
               
               Sd(S,S)=0;
               Sd=Sd+Sd';
-              Sd_ij=Sd.*D1; %Score because of distance (symmetric case)
+              %Sd_ij=Sd;%.*D1; %Score because of distance (symmetric case)
               
-              Sc_j=sum(Sd_ij); % Score of node j because of conectance Sc_j=Sum_k[1/d_jk] 
+              Scj=sum(Sd); % Score of node j because of conectance Sc_j=Sum_k[1/d_jk] 
                             % where k are neighbours of j 
                             % each link contributes to score with its inverse 
                             % length (the shorter the higher contribution)
-              Sc_j_Rep=repmat(Sc_j',1,S);
-              St_ij=Sd_ij.*Sc_j_Rep;  %Total Score for site j to migrate to i: St_j=Sd_j * Sc_j = 1/d_ij * Sc_j
+              ScjRep=repmat(Scj',1,S);
+              St=Sd.*ScjRep;  %Total Score for site j to migrate to i: St_j=Sd_j * Sc_j = 1/d_ij * Sc_j
               
-              P_ij=cumsum(St_ij);
+              P_ij=cumsum(St)
+              pause
               %DI = Di+Di';
               %DI=DI.*D1;
 %                a = sum(DI(1:S,1:S),2).^2;
