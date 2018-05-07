@@ -1,9 +1,0 @@
-{Error using eig
-EIG did not converge.
-
-Error in matlab.internal.math.mpower.viaEig (line 22)
-        [V,d] = eig(Y,'vector');
-
-Error in DynLSymmetry_06 (line 22)
-  % so P_ij(d=(2)^0.5*L)=P_min
-} 
