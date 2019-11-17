@@ -1,6 +1,7 @@
 # DynamicLandscapes
 This repository explores the role of patch and connectivity dynamics on species diversity. We aim to strengthen existing metacommunity theory by extending it to dynamic landscapes. The repository contains a protocol combining simulations and analytical expectations to compare the predictions between static and dynamic landscapes. The repository is based on the working paper uploaded to bioRxiv  https://www.biorxiv.org/content/early/2015/06/26/021220.short
 
+
 The repository contains 5 folders. 
 
 DATA contains empirical data of landscape dynamics. 

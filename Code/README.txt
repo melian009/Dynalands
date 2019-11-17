@@ -1,4 +1,4 @@
 ##TODO
 
-Download the last code from Euler here + link to simus outputs
-Download mammal data from Antarctic? Contrast A and w  
+Download the last code from Euler here (now folder DynalandsSERVER) + link to simus outputs (Switch)
+Download data and link (Switch)  
