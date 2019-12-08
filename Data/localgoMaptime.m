@@ -20,7 +20,8 @@ pkg load io
 
 %Check columns!!
 %c = csv2cell('sharkwebdataPhyto1819clean.csv');
-c = csv2cell('sharkwebdataPhyto20002019.csv',100);
+%c = csv2cell('sharkwebdataPhyto20052019.csv',100);
+c = csv2cell('sharkwebdataZoo20002019.csv',100);%Check 2005
 
 %c9 date :: c1 lat :: c2 long :: c3 taxa
 
@@ -35,7 +36,7 @@ out = sortrows(e,1);%Increasing LAT
 
 
 %LAT classes 
-LATclas = 100;%latitude classes :: final run 100 classes
+LATclas = 50;%latitude classes :: final run 100 classes
 LATc = round(linspace(1,length(out) - 1,LATclas));
 
 %T = zeros(1,1);
@@ -98,7 +99,8 @@ Timebin = unique(c(:,1));
     end
 end
 
-T1 = cell2csv('Ttime.csv',T)
+%cell2csv('Ttime50LATclassPhyto.csv',T);
+cell2csv('Ttime50LATclassZoo.csv',T);
 
 %Check Oytput matrix T
 
