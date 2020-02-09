@@ -20,8 +20,8 @@ pkg load io
 
 %Check columns!!
 %c = csv2cell('sharkwebdataPhyto1819clean.csv');
-%c = csv2cell('sharkwebdataPhyto20052019.csv',100);
-c = csv2cell('sharkwebdataZoo20002019.csv',100);%Check 2005
+c = csv2cell('sharkwebdataPhyto20052019.csv',100);
+%c = csv2cell('sharkwebdataZoo20002019.csv',100);%Check 2005
 
 %c9 date :: c1 lat :: c2 long :: c3 taxa
 
