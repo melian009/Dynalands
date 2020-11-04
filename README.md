@@ -33,8 +33,8 @@ Link to Overleaf :: Update overleaf with last modifications :: Delete existing o
 
 
 ## Last stage OCT 2020 ---------------------------------------------------------------------------------------
-Figure 1: Other phenomena -- Victor
-Figure 2: Normalize alpha and gamma by alpha: Obtain theoretical slopes given A,frequency 
+Figure 1: Other phenomena -- Victor (Empirical case study)
+Figure 2: Normalize alpha and gamma by alpha: Obtain theoretical slopes given A and w
 Figure 3: Normalize alpha and gamma by alpha: 
 Empirical slope: Which A and frequency: connection to processes
 Second line of evidence: spatiotemporal syncrhony obtaine from degree-alpha (theory) and from alpha (empirical)
