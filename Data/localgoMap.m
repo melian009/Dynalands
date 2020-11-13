@@ -72,7 +72,6 @@ for i = 1:length(LATc) - 1;
 %pause
                if length(Alat) < length(Alatgamma)
                 count = count + 1;
-                T(count,1) = 
                 T(count,1) = Latbin(k,1);%LAT
                 T(count,2) = Longbin(k1,1);%LONG
                 T(count,3) = length(Alat);%alpha
@@ -98,23 +97,23 @@ alpha = [T{count,3}];gamma = [T{count,4}];
     end
 end
 
-%hold on
-%plot([T{1:13,3}],[T{1:13,4}],'.','Markersize',24,'Color',[0.85 0.5 0.5])
-%plot([T{14:52,3}],[T{14:52,4}],'.','Markersize',24,'Color',[0.75 0.25 0.5])
-%plot([T{53:79,3}],[T{53:79,4}],'.','Markersize',24,'Color',[0.75 0.5 0.75])
-%plot([T{80:132,3}],[T{80:132,4}],'.','Markersize',24,'Color',[0.75 0.85 0.75])
-%plot([T{133:189,3}],[T{133:189,4}],'.','Markersize',24,'Color',[0.25 0.25 0.25])
-%plot([T{190:230,3}],[T{190:230,4}],'.','Markersize',24,'Color',[0.9 0.5 0.85])
-%plot([T{231:250,3}],[T{231:250,4}],'.','Markersize',24,'Color',[0.65 0.65 0.65])
-%plot([T{251:266,3}],[T{251:266,4}],'.','Markersize',24,'Color',[0.35 0.65 0.65])
-%plot([T{267:530,3}],[T{267:530,4}],'.','Markersize',24,'Color',[0.15 0.35 0.65])
-%plot([T{531:880,3}],[T{531:880,4}],'.','Markersize',24,'Color',[0.05 0.15 0.65])
-%plot([T{881:1035,3}],[T{881:1035,4}],'.','Markersize',24,'Color',[0.01 0.05 0.65])
-%plot([T{1036:1264,3}],[T{1036:1264,4}],'.','Markersize',24,'Color',[0.001 0.01 0.65])
+hold on
+plot([T{1:13,3}],[T{1:13,4}],'.','Markersize',24,'Color',[1 0 0])
+plot([T{14:52,3}],[T{14:52,4}],'.','Markersize',24,'Color',[1 0.15 0])
+plot([T{53:79,3}],[T{53:79,4}],'.','Markersize',24,'Color',[1 0.25 0])
+plot([T{80:132,3}],[T{80:132,4}],'.','Markersize',24,'Color',[1 0.5 0])
+plot([T{133:189,3}],[T{133:189,4}],'.','Markersize',24,'Color',[1 0.75 0])
+plot([T{190:230,3}],[T{190:230,4}],'.','Markersize',24,'Color',[1 1 0])
+plot([T{231:250,3}],[T{231:250,4}],'.','Markersize',24,'Color',[0.75 0.75 0])
+plot([T{251:266,3}],[T{251:266,4}],'.','Markersize',24,'Color',[0.5 0.5 0])
+plot([T{267:530,3}],[T{267:530,4}],'.','Markersize',24,'Color',[0.25 0.25 0])
+plot([T{531:880,3}],[T{531:880,4}],'.','Markersize',24,'Color',[0 0 0.25])
+plot([T{881:1035,3}],[T{881:1035,4}],'.','Markersize',24,'Color',[0 0 0.5])
+plot([T{1036:1264,3}],[T{1036:1264,4}],'.','Markersize',24,'Color',[0 0 1])
 
-xlabel('alpha',"fontsize",14)
-ylabel('gamma',"fontsize",14)
-set(gca,'fontsize',14);
+xlabel('{\alpha}',"fontsize",20)
+ylabel('{\gamma}',"fontsize",14)
+set(gca,'fontsize',24,'interpreter','latex');
 
 %Plot gradient classes ---------------------------------------------------------
 T1alpha.mean = mean([T{1:13,3}]);
