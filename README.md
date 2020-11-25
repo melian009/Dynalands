@@ -9,7 +9,7 @@ DATA contains empirical data of landscape dynamics.
 
 PROTOCOL shows the steps to contrast predictions between static and dynamic landscapes. 
 
-CODES contain the algorithms to run the protocol. 
+CODES contain the algorithms to run simulations
 
 WORKINGPAPER  documents the latex files of the original ms., and 
 
@@ -17,35 +17,16 @@ WORKSHOPS illustrate moments that contributed to build this repository.
 
 Codes, data and the docs associated to the working paper are all available under the LICENSE file. Please let us know if you find these docs useful for your research. 
 
+Simulted and empirical data can be downloaded from here
+https://drive.switch.ch/index.php/s/PwrqmzSu651jaGt 
+Results Figure 3 are based on sharkwebdataPhyto20052019.csv
 
-## Commits TODO ---- 50Mb max ----------------------------------------------
+The data was downloaded from https://sharkweb.smhi.se/
 
-Link to Output data+codes :: Switch drive
+M0.1 ad M0.3 at https://drive.switch.ch/index.php/apps/files/?dir=/DL&fileid=1880718904
 
-Link to Empirical data :: Switch drive
+Figure 1 :: Run python code terminal :: python2 plot_random_geometric_network.pyls 
 
-Codes :: Alex :: plots + Carlos :: Extract time-dependent long-lat alpha-gamma
+The original ms is on overleaf 
+https://www.overleaf.com/project/59490faa8920e4376fb90acc
 
-Jupyter notebook to facilitate reproducibility 
-
-Link to Overleaf :: Update overleaf with last modifications :: Delete existing overleaf in the repo 
-##--------------------------------------------------------------------------
-
-
-## Last stage OCT 2020 ---------------------------------------------------------------------------------------
-Figure 1: Other phenomena -- Victor (Empirical case study)
-Figure 2: Normalize alpha and gamma by alpha: Obtain theoretical slopes given A and w
-Figure 3: Normalize alpha and gamma by alpha: 
-Empirical slope: Which A and frequency: connection to processes
-Second line of evidence: spatiotemporal syncrhony obtaine from degree-alpha (theory) and from alpha (empirical)
-
-Alex: 
-Currents map with isoclines to support Figure 3: Phytoplanckton passive migration
-Defining center-periphery -- context LBG
-
-Literature:
-Ecoevo latitudinal
-LBG
-Syncrhony
-Environmental stochasticity (seasonality)
-##------------------------------------------------------------------------------------------------------------
