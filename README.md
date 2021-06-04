@@ -30,3 +30,13 @@ Figure 1 :: Run python code terminal :: python2 plot_random_geometric_network.py
 The original ms is on overleaf 
 https://www.overleaf.com/project/59490faa8920e4376fb90acc
 
+## Temporary files with 250MB for analyzing simulation outputs and empirical patterns is in path
+file:///home/melian/Documents/Research/2021/DynaLandServer/Figure3
+## Once finished: copy all simus outputs to drive.switch -- and leave only light code @git Code folder
+
+## Temporary files with 550MB for regionalization of the data is in path
+file:///home/melian/Documents/Research/2021/DynaLandServer/Temporal
+## Once finished: copy all empirical to drive.switch -- and leave only light code @git Data folder
+
+
+
