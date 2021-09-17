@@ -39,6 +39,6 @@ file:///home/melian/Documents/Research/2021/DynaLandServer/Temporal
 ## Once finished: copy all empirical to drive.switch -- and leave only light code @git Data folder
 
 ## Pre-release of animations
-DOI: 10.5281/zenodo.5514188 
+[![DOI](https://zenodo.org/badge/111830799.svg)](https://zenodo.org/badge/latestdoi/111830799)
 
 
