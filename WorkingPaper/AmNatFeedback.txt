@@ -1,0 +1,75 @@
+Helloooooo
+
+Thank you for the quick feedback!
+
+Alex and myself have been discussing it. Here the TODO list accounting for editors' and your feedback -- we will take care of it -- will let you know when the ms is ready to read so we all can take a read and decide where to submit. Top candidates are Ecography and PRX -- MEE would require more changes in the direction of building a package to more broadly explore dynamic landscapes. Please edit the TODO list if you feel key points are missing to proceed with the changes.
+
+
+TODO
+
+0. Introduction 
+   Fine tuning the confusion with macroevolution (Writing)
+   Outline more clearly the nature and importance of the specific knowledge gap what the model analysis aims to fill (Writing)
+
+1. Suitability of the model to Phytoplankton
+   Alternative phyto models (Literature and Writing)
+   Finding more evidence for phytoplankton patchy distribution in space, difussion and passive migration and periodic fluctuations in the ocean currents (Literature and Writing)
+
+2. Speciation rate and the alpha-to-gamma ratio
+   Run nu gradient and compute alpha-to-gamma slope: how sensitive is the slope to the speciation rate? (Coding, Analysis, Writing)
+    
+3. Alpha-to-gamma ratio
+   Explain more clearly how gamma was calculated and how the sensitivity analysis of the alpha-to-gamma slope was done (Fig 3 and A.3).
+   Target more clearly "If the model were a good one for the phyto system, what degree of connectivity fluctuation would be consistent with the alpha-gamma scaling we observe?  (Writing)
+    
+    
+4. Journals 
+V Why not Ecol lett, Front in Ecol Evol? PRX would be an option, dynamics in fluctuating environments is receiving some attention. Ecography is also a good option.
+GM Model to data stronger and reconsidering AmNat -- Speciation rate gradient Ecography -- I have more experience with MEE, which is a very pragmatic journal. Based on my experience, I am afraid we would not find the depth of revision our work deserves. We could try nevertheless, and we would probably need to adjust a bit the text to the format of BES journals. I am open to consider GEB, but also there I have little experience, and am also happy to consider purely theoretical journals, eg TPB, where the model would be more appreciated.
+RR I guess Eocgraphy is a good option, but need to focus a bit on the link between empirical data and models! -- Global Ecology and Biogeography, but your option seems to fit better to the manuscript topic though GEB has recently published (2019) a paper on species range modelling (https://onlinelibrary.wiley.com/doi/10.1111/geb.12993
+CS  "The empirical link is not particularly strong". What do you think about it? -- I like the idea of Ecography. Although my favourite theoretical journal is Methods in Ecology and Evolution. :) Do you think it can be an option as well?
+
+
+
+
+PROS
+EB Periodical changes clearly prevalent throughout nature
+EB connectivity dynamics changes species richness in comparison with fixed connectivity
+
+CONS
+EB very interesting theory but the applications of the ecology of natural communities are less clear
+EB Model assumptions 
+EB Writing challenging to the broad audience
+EB Why might changes in connectivity combined with demographic or migration dynamics drive latitudinal and longitudinal diversity gradients (lines 104-108)? 
+EB Gaps in knowledge are repeatedly mentioned (e.g., line 116-119) but the explanations for why these gaps should be filled are not always obvious. 
+EB Even points within the abstract are difficult to grasp or fully understand without diving into the paper in part because they are not fully explained (e.g., what are the testable predictions referenced in lines 19-20). 
+EB Finally, related to comments from Dr. Connolly, it's not clear to me (as someone outside the field) why the slope of
+the alpha-gamma species richness relationship is a good test of model predictions. Could alternative processes or hypotheses produce the same patterns observed in the empirical data?
+
+EB It is less clear how robust your findings are to model assumptions or how well model choices apply to systems observed in nature. We appreciate the attempts to link the model to phytoplankton systems, but ultimately we sought even stronger connections.
+GM I agree that our model would benefit a lot from an attempt of calibration, and a more robust quantitative connection to empirical data. This could take more time and work, both in understanding/characterizing the empirical data we choose and/or in adapting the model to it. This could result even in changing the model structure or eventually in choosing different data, if we see that our model is not appropriate for a quantitative description of phytoplankton. But in that way, we would address the main concerns of Sean Connolly. 
+
+AE The empirical link is not particularly strong, since the authors simply compare their empirical scaling relationship with the spectrum of values from the simulations. Thus, the data are neither used as a test for model predictions (for example, comparing alpha-gamma scaling along a known gradient of connectivity fluctuation frequency or amplitude), nor is it used for calibration.
+
+AE Why phytoplankton would be a good system on which to test predictions from a model like this. In particular, I would not have thought of a metapopulation of fixed discrete patches occupied by adults, connected by dispersal of propagules, as particularly representative of phytoplankton. There was no real argument in the paper that the model was tailored to the system in important ways, or that the system was chosen to be representative of the model assumptions in important ways. Rather, it seemed more to answer the question: “If the model were a good one for this system, what degree of connectivity fluctuation would be consistent with the alpha-gamma scaling we observe?”
+
+AE The ms analyzes the properties of a particular neutral model, which to me seems more like a paper for a strict theory journal (Theoretical Ecology, TPB, etc.). 
+
+
+AE For Am Nat, I would be looking for either a stronger link to empirical data, or some demonstration that the conclusions about how connectivity fluctuations affect the scaling of diversity is not sensitive to the neutrality assumption and is identifying a robust consequence of connectivity fluctuations. 
+
+AE For example, if I understand right, the model has 100 patches with 100 individuals each, and the probability that the death is replaced by a new species – novel to the metacommunity – is 0.001, indicating an introduction of ~10 new species per generation, which is quite a high speciation/new species introduction rate, which could very strongly influence the scaling relationships found in a way that I think most ecologists would consider unlikely to be representative of most metacommunity dynamics in nature.
+GM Another good point raised, which I think would not cost so much time and effort to be addressed, is the size of speciation rate. We could definitely test how the predictions of the alpha-gamma slope are affected by lower (eg several orders of magnitude lower) values of \nu. This would then allow us to better clarify the knowledge gaps we are filling in describing ecological and evolutionary time scales with the same model and, in my opinion, would be enough to resubmit right away to another journal.
+CS And what do you think about their complaining regarding the speciation rate. Do you think we will need to run new simulations with different values?
+
+AE Some minor points: the text refers to gamma being calculated “along a latitudinal gradient” (line 292) for the empirical data, whereas Fig 3 mentions a *longitudinal* gradient. This confused me a great deal, and it is still not clear to me how the authors determined their different regions for calculating gamma diversity. Some sort of diagrammatic representation might be needed here. It is important to the paper so needs to be explained very clearly. Also at numerous points in the text I encountered “(Figure ??)” or similar, so obviously they are using LaTeX or something that is meant to insert figure numbers but for whatever reason that is not working. This, too, made the MS hard to read and understand. 
+CS And shall we create cartoons to describe how gamma is calculated?
+
+AE Lastly, this is a relatively minor point but the introduction talks about fluctuations over macroevolutionary time scales, so I was surprised when I got to the Methods and realized that they authors were examining fluctuations over ecological time scales. 
+
+AE The authors might consider rewriting the introduction so that it more clearly outlines the nature and importance of the specific knowledge gap that their model analysis aims to fill.
+
+
+
+
+
