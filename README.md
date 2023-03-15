@@ -1,44 +1,27 @@
-# DynamicLandscapes
+## Biodiversity dynamics in landscapes with fluctuating connectivity
 
-This repository explores the role (of patch and) connectivity dynamics on species diversity. We aim to strengthen existing metacommunity theory by extending it to dynamic landscapes. The repository contains a protocol combining simulations and analytical expectations to compare the predictions between static and dynamic landscapes. The repository is based on the working paper uploaded to bioRxiv  https://www.biorxiv.org/content/early/2015/06/26/021220.short
+### Ecography DOI: http://doi.org/10.1111/ecog.06385
 
+### SUMMARY
+Biodiversity can increase in both high and low-connected landscapes. Yet, we lack predictions related to biodiversity dynamics when accounting for the temporal heterogeneity in the connections among the habitats of a landscape. Here, we study the relationship between fluctuations in landscape connectivity and biodiversity dynamics at local and regional scales. We contrast predictions about species richness between landscapes with and without fluctuations in connectivity. Our results show that local, alpha, and regional, gamma, richness can increase together in dynamic landscapes characterized by periodic connectivity, clarifying empirical findings of high biodiversity in both low and high-connected landscapes. Our results also suggest that fluctuations in connectivity increase the overall number of species coexisting in dynamic landscapes when compared with static landscapes with no fluctuations in connectivity. Extending metacommunity theory, by including fluctuations in landscape connectivity, can thus provide new testable predictions about species diversity across broad spatiotemporal scales in rapidly changing landscapes.
 
-The following are the folders included in the repo:: 
+### ANIMATION
+Visualizing changes in the radius to connect two sites -- the larger the radius the higher the number of sites connected - radius depends on the amplitude and the frequency
+[Animation Dynamic Landscape](/AnimationSeasonal/RGN_f0.1_f0.9.avi)
 
-DATA contains empirical data of landscape dynamics. 
+### src
+Last version of the models to run simulations
 
-PROTOCOL shows the steps to contrast predictions between static and dynamic landscapes. 
+### FIGURES
+Final figures of the accepted ms.
 
-CODES contain the algorithms to run simulations
+### NOTEBOOK
+Non-finished Jupyter notebook using Random Geometric Graphs
 
-WORKINGPAPER  documents the latex files of the original ms., and 
+### SIMULATION DATA
+* 18.4GB simulation data in https://drive.switch.ch/index.php/s/1bsUuBhiB9rHULB
 
-WORKSHOPS illustrate moments that contributed to build this repository.
-
-Codes, data and the docs associated to the working paper are all available under the LICENSE file. Please let us know if you find these docs useful for your research. 
-
-Simulted and empirical data can be downloaded from here
-https://drive.switch.ch/index.php/s/PwrqmzSu651jaGt 
-Results Figure 3 are based on sharkwebdataPhyto20052019.csv
-
-The data was downloaded from https://sharkweb.smhi.se/
-
-M0.1 ad M0.3 at https://drive.switch.ch/index.php/apps/files/?dir=/DL&fileid=1880718904
-
-Figure 1 :: Run python code terminal :: python2 plot_random_geometric_network.pyls 
-
-The original ms is on overleaf 
-https://www.overleaf.com/project/59490faa8920e4376fb90acc
-
-## Temporary files with 250MB for analyzing simulation outputs and empirical patterns is in path
-file:///home/melian/Documents/Research/2021/DynaLandServer/Figure3
-## Once finished: copy all simus outputs to drive.switch -- and leave only light code @git Code folder
-
-## Temporary files with 550MB for regionalization of the data is in path
-file:///home/melian/Documents/Research/2021/DynaLandServer/Temporal
-## Once finished: copy all empirical to drive.switch -- and leave only light code @git Data folder
-
-## Pre-release of animations
+### ZENODO
 [![DOI](https://zenodo.org/badge/111830799.svg)](https://zenodo.org/badge/latestdoi/111830799)
 
 

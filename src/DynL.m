@@ -11,7 +11,7 @@
   MaxGenerations = 3000; %number of generations per replicates
   
   
-  m=0.1; %migration rate
+  m=0.05; %migration rate
   v=0.001;%speciation rate 
   l=1-(m+v);%birth rate
   S = 100;%number of sites 
@@ -21,7 +21,7 @@
   
   
   %Amplitudes, AS and frequencies GPTS values
-    As = [0.075 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];%0.025 0.05
+  As = [0.025 0.05 0.075 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1];
   GPTs =[1 5 10 50 100 500 1000]; % GPT=1 is Static
                             % GPT>MaxGenerations doesn't make sense...
                             % correspond to 100, 50, 10, 5, 1 periods of r 
