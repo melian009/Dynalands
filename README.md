@@ -7,6 +7,8 @@ Biodiversity can increase in both high and low-connected landscapes. Yet, we lac
 
 ### ANIMATION
 Visualizing changes in the radius to connect two sites -- the larger the radius the higher the number of sites connected - radius depends on the amplitude and the frequency
+
+* TO BE ADDED
 ![Animation Dynamic Landscape](/Animation/Seasonal/RGN_f0.1_f0.9.avi)
 
 ### src
